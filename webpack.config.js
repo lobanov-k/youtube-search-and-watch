@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const isProduction = process.env.NODE_ENV === 'production';
 const pluginsArray = [new webpack.HotModuleReplacementPlugin()];
 
-if (isProduction) pluginsArray.push(new webpack.HotModuleReplacementPlugin());
+if (isProduction) pluginsArray.push(new MiniCssExtractPlugin());
 
 
 module.exports = {
