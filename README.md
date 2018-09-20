@@ -15,7 +15,7 @@ Starter kit of React and LESS includes Webpack settings and Babel setings.
 git clone https://github.com/lobanov-k/webpack-react-less-boilerplate
 cd webpack-react-less-boilerplate
 npm install
-npm start
+npm run start
 ```
 
 Project is running at http://localhost:8080
