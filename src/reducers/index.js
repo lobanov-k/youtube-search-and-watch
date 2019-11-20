@@ -1,9 +1,12 @@
 import {combineReducers} from 'redux';
-import { REQUEST_SEARCH, REQUEST_SEARCH_SUCCESS,
+import { REQUEST_SEARCH, SET_CURRENT_VIDEO,
     REQUEST_SEARCH_FAILURE, RECEIVE_VIDEOS } from '../constants';
 
 function currentVideo(state = null, action) {
     switch (action.type) {
+        case SET_CURRENT_VIDEO:
+            return action.payload.currentVideo;
+
         default:
             return state;
     }
@@ -19,17 +22,19 @@ function searchResult(state = {
             return Object.assign({}, state, {
                 isFetching: true
             });
+
         case RECEIVE_VIDEOS:
             return Object.assign({}, state, {
                 isFetching: false,
-                items: action.json
+                items: action.payload.list
             });
+
         case REQUEST_SEARCH_FAILURE:
             return Object.assign({}, state, {
                 isFetching: false,
-                searchError: true,
-                items: action.videos
+                searchError: true
             });
+
         default:
             return state;
     }
@@ -39,6 +44,7 @@ function searchString(state = '', action) {
     switch (action.type) {
         case REQUEST_SEARCH:
             return action.payload.searchString;
+
         default:
             return state;
     }
