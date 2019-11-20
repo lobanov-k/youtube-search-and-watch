@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { processSearchAction } from './../../actionCreators';
+import { requestSearchAction, fetchSearchVideos } from './../../actionCreators';
 
 export default function() {
     let [searchString, setSearchString] = useState('');
     const dispatch = useDispatch();
-    const processSearch = (searchString) => dispatch(processSearchAction(searchString));
+    const processSearch = (searchString) => dispatch(requestSearchAction(searchString));
+    const processFetchVideos = (searchString) => dispatch(fetchSearchVideos(searchString));
 
     const onChange = (event) => {
         setSearchString(event.target.value);
@@ -17,6 +18,7 @@ export default function() {
         if (searchString.trim() === '') return;
         processSearch({searchString});
         setSearchString(searchString);
+        processFetchVideos(searchString);
     }
 
     return (
