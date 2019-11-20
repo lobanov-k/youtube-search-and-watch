@@ -38,6 +38,7 @@ module.exports = {
         publicPath: '/',
         filename: 'bundle.js'
     },
+    devtool: 'eval-source-map',
     plugins: pluginsArray,
     devServer: {
         contentBase: './dist',
