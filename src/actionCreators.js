@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
-import { REQUEST_SEARCH, REQUEST_SEARCH_SUCCESS,
-    REQUEST_SEARCH_FAILURE, RECEIVE_VIDEOS } from './constants';
-import getRequestString from './utils';
+import { REQUEST_SEARCH, REQUEST_SEARCH_FAILURE,
+    RECEIVE_VIDEOS, SET_CURRENT_VIDEO } from './constants';
+import {getRequestString} from './utils';
 
 export function requestSearchAction(searchString) {
     return {
@@ -12,11 +12,11 @@ export function requestSearchAction(searchString) {
     };
 }
 
-export function recieveVideos(json) {
+export function recieveVideos(list) {
     return {
         type: RECEIVE_VIDEOS,
         payload: {
-            json
+            list
         }
     };
 }
@@ -35,11 +35,21 @@ export function fetchSearchVideos(searchString) {
         dispatch(requestSearchAction(searchString));
 
         return fetch(getRequestString(searchString))
-            .then(json => {
-                dispatch(recieveVideos(json));
+            .then(response => {
+                return response.json();
+            }).then((result) => {
+                dispatch(recieveVideos(result.items));
             }).catch((error) => {
                 dispatch(recieveVideos(error));
             });
     }
 }
 
+export function setCurrentVideo(currentVideo) {
+    return {
+        type: SET_CURRENT_VIDEO,
+        payload: {
+            currentVideo
+        }
+    }
+}
