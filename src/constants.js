@@ -1,0 +1,1 @@
+export const REQUEST_SEARCH = 'REQUEST_SEARCH';
