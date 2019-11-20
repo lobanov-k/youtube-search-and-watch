@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { requestSearchAction, fetchSearchVideos } from './../../actionCreators';
+import { fetchSearchVideos } from './../../actionCreators';
 
 export default function() {
     let [searchString, setSearchString] = useState('');
+    let searchStringState = useSelector(state => state.searchString);
+
+    useEffect(() => {
+        setSearchString(searchStringState);
+    }, [searchStringState]);
+
     const dispatch = useDispatch();
-    const processSearch = (searchString) => dispatch(requestSearchAction(searchString));
     const processFetchVideos = (searchString) => dispatch(fetchSearchVideos(searchString));
 
     const onChange = (event) => {
@@ -16,7 +21,7 @@ export default function() {
     const onSubmit = (event) => {
         event.preventDefault();
         if (searchString.trim() === '') return;
-        processSearch({searchString});
+
         setSearchString(searchString);
         processFetchVideos(searchString);
     }
