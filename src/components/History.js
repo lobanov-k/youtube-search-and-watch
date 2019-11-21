@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeVideoFromHistory, setCurrentVideo } from '../actionCreators';
+import { removeVideoFromHistory, setCurrentVideo, toogleSearchList } from '../actionCreators';
 
 export default function() {
     const dispatch = useDispatch();
     let history = useSelector(state => state.history);
+    let isSearchListOpened = useSelector(state => state.isSearchListOpened);
 
     return (
         <div className="history">
@@ -14,13 +15,17 @@ export default function() {
                 return (
                     <div key={index} className="history__item">
                         <p className="history__item-text"
-                            onClick={() => dispatch(setCurrentVideo(Object.assign({}, item, {isFromHistory: true})))}>
+                            onClick={() => {
+                                dispatch(setCurrentVideo(Object.assign({}, item, {isFromHistory: true})));
+                                if (isSearchListOpened) dispatch(toogleSearchList());
+                            }}
+                        >
                             {title}
                         </p>
                         <span 
                             className="history__item-delete"
                             onClick={() => dispatch(removeVideoFromHistory(index))}>
-                            X
+                            delete
                         </span>
                     </div>
                 );
