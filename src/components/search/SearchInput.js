@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
-import { fetchSearchVideos } from './../../actionCreators';
+import { fetchSearchVideos, toogleSearchList } from './../../actionCreators';
 
 export default function() {
     let [searchString, setSearchString] = useState('');
     let searchStringState = useSelector(state => state.searchString);
+    let isSearchListOpened = useSelector(state => state.isSearchListOpened);
 
     useEffect(() => {
         setSearchString(searchStringState);
@@ -18,12 +18,20 @@ export default function() {
         setSearchString(event.target.value);
     }
 
+    const onInputClick = () => {
+        if (searchStringState && !isSearchListOpened) {
+            dispatch(toogleSearchList());
+        }
+    }
+
     const onSubmit = (event) => {
         event.preventDefault();
         if (searchString.trim() === '') return;
 
         setSearchString(searchString);
         processFetchVideos(searchString);
+
+        if (!isSearchListOpened) dispatch(toogleSearchList());
     }
 
     return (
@@ -31,10 +39,12 @@ export default function() {
             onSubmit={onSubmit}>
             <input
                 type="text"
+                placeholder="Search"
                 name="search"
                 value={searchString}
                 className="search__input"
                 onChange={onChange}
+                onClick={onInputClick}
             />
         </form>
     );
