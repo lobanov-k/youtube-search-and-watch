@@ -26,17 +26,19 @@ export default function SearchInput () {
 
     const onSubmit = (event) => {
         event.preventDefault();
-        if (searchString.trim() === '') return;
+        const trimString = searchString.trim();
+        if (!trimString.length) return;
 
-        setSearchString(searchString);
-        processFetchVideos(searchString);
+        setSearchString(trimString);
+        processFetchVideos(trimString);
 
         if (!isSearchListOpened) dispatch(toogleSearchList());
     }
 
     return (
         <form className="search__form"
-            onSubmit={onSubmit}>
+            onSubmit={onSubmit}
+        >
             <input
                 type="text"
                 placeholder="Search"
