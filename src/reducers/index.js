@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 import { REQUEST_SEARCH, SET_CURRENT_VIDEO,
-    REQUEST_SEARCH_FAILURE, RECEIVE_VIDEOS } from '../constants';
+    REQUEST_SEARCH_FAILURE, RECEIVE_VIDEOS, ADD_VIDEO_TO_HISTORY, REMOVE_VIDEO_FROM_HISTORY } from '../constants';
 
 function currentVideo(state = null, action) {
     switch (action.type) {
@@ -52,6 +52,12 @@ function searchString(state = '', action) {
 
 function history(state = [], action) {
     switch (action.type) {
+        case ADD_VIDEO_TO_HISTORY:
+            return state.concat(action.payload.currentVideo);
+
+        case REMOVE_VIDEO_FROM_HISTORY:
+            return state.filter((item, index) => index !== action.payload.index);
+
         default:
             return state;
     }
