@@ -16,7 +16,7 @@ export default function History() {
                     <div key={index} className="history__item">
                         <p className="history__item-text"
                             onClick={() => {
-                                dispatch(setCurrentVideo(Object.assign({}, item, {isFromHistory: true})));
+                                dispatch(setCurrentVideo({...item, isFromHistory: true}));
                                 if (isSearchListOpened) dispatch(toogleSearchList());
                             }}
                         >
