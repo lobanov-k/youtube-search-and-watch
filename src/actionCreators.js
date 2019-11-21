@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import { REQUEST_SEARCH, REQUEST_SEARCH_FAILURE,
     RECEIVE_VIDEOS, SET_CURRENT_VIDEO,
-    ADD_VIDEO_TO_HISTORY, REMOVE_VIDEO_FROM_HISTORY} from './constants';
+    ADD_VIDEO_TO_HISTORY, REMOVE_VIDEO_FROM_HISTORY, TOOGLE_SEARCH_LIST} from './constants';
 import {getRequestString} from './utils';
 
 export function requestSearchAction(searchString) {
@@ -70,5 +70,11 @@ export function removeVideoFromHistory(index) {
         payload: {
             index
         }
+    }
+}
+
+export function toogleSearchList() {
+    return {
+        type: TOOGLE_SEARCH_LIST
     }
 }
