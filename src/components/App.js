@@ -6,23 +6,19 @@ import History from './History';
 import Search from './search/index';
 import Player from './Player';
 
-class App extends React.Component {
-    render() {
-        return (
-            <Provider store={store}>
-                <div className="container">
-                    <div className="sidebar">
-                        <p>Watch History</p>
-                        <History/>
-                    </div>
-                    <div className="mainContent">
-                        <Search/>
-                        <Player/>
-                    </div>
+export default function() {
+    return (
+        <Provider store={store}>
+            <div className="container">
+                <div className="sidebar">
+                    <p className="history__title">Watch History</p>
+                    <History/>
                 </div>
-            </Provider>
-        );
-    }
+                <div className="mainContent">
+                    <Search/>
+                    <Player/>
+                </div>
+            </div>
+        </Provider>
+    );
 }
-
-export default App;
