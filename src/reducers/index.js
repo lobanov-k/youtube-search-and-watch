@@ -1,6 +1,8 @@
 import {combineReducers} from 'redux';
 import { REQUEST_SEARCH, SET_CURRENT_VIDEO,
-    REQUEST_SEARCH_FAILURE, RECEIVE_VIDEOS, ADD_VIDEO_TO_HISTORY, REMOVE_VIDEO_FROM_HISTORY } from '../constants';
+    REQUEST_SEARCH_FAILURE, RECEIVE_VIDEOS,
+    ADD_VIDEO_TO_HISTORY, REMOVE_VIDEO_FROM_HISTORY,
+    TOOGLE_SEARCH_LIST } from '../constants';
 
 function currentVideo(state = null, action) {
     switch (action.type) {
@@ -63,9 +65,21 @@ function history(state = [], action) {
     }
 }
 
+function isSearchListOpened(state = false, action) {
+    switch (action.type) {
+        case TOOGLE_SEARCH_LIST:
+            return !state; 
+
+        default:
+            return state;
+
+    }
+}
+
 export default combineReducers({
     currentVideo,
     searchResult,
     searchString,
-    history
+    history,
+    isSearchListOpened
 });
