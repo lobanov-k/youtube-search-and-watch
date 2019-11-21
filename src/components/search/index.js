@@ -4,9 +4,9 @@ import SearchResults from './SearchResults';
 
 export default function() {
     return (
-        <React.Fragment>
+        <div className="search">
             <SearchInput/>
             <SearchResults/>
-        </React.Fragment>
+        </div>
     );
 }
