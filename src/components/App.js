@@ -13,11 +13,11 @@ class App extends React.Component {
                 <div className="container">
                     <div className="sidebar">
                         <p>Watch History</p>
-                        {/* <History/> */}
+                        <History/>
                     </div>
                     <div className="mainContent">
                         <Search/>
-                        {/* <Player/> */}
+                        <Player/>
                     </div>
                 </div>
             </Provider>
