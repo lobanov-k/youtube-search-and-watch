@@ -48,9 +48,5 @@ export default function Player() {
         }
     }, [videoData]);
 
-    return (
-        <div className="player__iframe-wrapper">
-            <div width="100%" id="player-iframe" className="player__iframe"></div>
-        </div>
-    );
+    return <div width="100%" id="player-iframe" className="player__iframe"></div>;
 }
