@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import { REQUEST_SEARCH, REQUEST_SEARCH_FAILURE,
-    RECEIVE_VIDEOS, SET_CURRENT_VIDEO } from './constants';
+    RECEIVE_VIDEOS, SET_CURRENT_VIDEO,
+    ADD_VIDEO_TO_HISTORY, REMOVE_VIDEO_FROM_HISTORY} from './constants';
 import {getRequestString} from './utils';
 
 export function requestSearchAction(searchString) {
@@ -50,6 +51,24 @@ export function setCurrentVideo(currentVideo) {
         type: SET_CURRENT_VIDEO,
         payload: {
             currentVideo
+        }
+    }
+}
+
+export function addVideoToHistory(currentVideo) {
+    return {
+        type: ADD_VIDEO_TO_HISTORY,
+        payload: {
+            currentVideo
+        }
+    }
+}
+
+export function removeVideoFromHistory(index) {
+    return {
+        type: REMOVE_VIDEO_FROM_HISTORY,
+        payload: {
+            index
         }
     }
 }
