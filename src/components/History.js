@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeVideoFromHistory, setCurrentVideo, toogleSearchList } from '../actionCreators';
 
-export default function() {
+export default function History() {
     const dispatch = useDispatch();
     let history = useSelector(state => state.history);
     let isSearchListOpened = useSelector(state => state.isSearchListOpened);

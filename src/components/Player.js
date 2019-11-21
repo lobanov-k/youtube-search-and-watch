@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addVideoToHistory } from '../actionCreators';
 
-export default function() {
+export default function Player() {
     const dispatch = useDispatch();
 
     let videoData = useSelector(state => state.currentVideo);

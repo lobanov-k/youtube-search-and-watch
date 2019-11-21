@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentVideo, toogleSearchList } from '../../actionCreators';
 import Loader from '../Loader';
 
-export default function() {
+export default function SearchResults() {
     const dispatch = useDispatch();
 
     const searchResult = useSelector(state => state.searchResult);

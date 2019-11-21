@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSearchVideos, toogleSearchList } from './../../actionCreators';
 
-export default function() {
+export default function SearchInput () {
     let [searchString, setSearchString] = useState('');
     let searchStringState = useSelector(state => state.searchString);
     let isSearchListOpened = useSelector(state => state.isSearchListOpened);
