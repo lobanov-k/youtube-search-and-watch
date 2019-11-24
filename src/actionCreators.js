@@ -73,8 +73,11 @@ export function removeVideoFromHistory(index) {
     }
 }
 
-export function toogleSearchList() {
+export function toggleSearchList(isOpen) {
     return {
-        type: TOOGLE_SEARCH_LIST
+        type: TOOGLE_SEARCH_LIST,
+        payload: {
+            isOpen
+        }
     }
 }
