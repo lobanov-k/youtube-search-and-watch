@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeVideoFromHistory, setCurrentVideo, toogleSearchList } from '../actionCreators';
+import { removeVideoFromHistory, setCurrentVideo, toggleSearchList } from '../actionCreators';
 
 export default function History() {
     const dispatch = useDispatch();
@@ -10,14 +10,14 @@ export default function History() {
     return (
         <div className="history">
             {history.map((item, index) => {
-                const {id: {videoId}, snippet: {thumbnails, title} } = item;
+                const { snippet: {thumbnails, title} } = item;
 
                 return (
                     <div key={index} className="history__item">
                         <p className="history__item-text"
                             onClick={() => {
                                 dispatch(setCurrentVideo({...item, isFromHistory: true}));
-                                if (isSearchListOpened) dispatch(toogleSearchList());
+                                if (isSearchListOpened) dispatch(toggleSearchList(false));
                             }}
                         >
                             {title}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentVideo, toogleSearchList } from '../../actionCreators';
+import { setCurrentVideo, toggleSearchList } from '../../actionCreators';
 import Loader from '../Loader';
 
 export default function SearchResults() {
@@ -28,7 +28,7 @@ export default function SearchResults() {
                             <button className="search__item-play"
                                 onClick={() => {
                                     dispatch(setCurrentVideo(item));
-                                    dispatch(toogleSearchList());
+                                    dispatch(toggleSearchList(false));
                                 }}
                             >
                                 Play
