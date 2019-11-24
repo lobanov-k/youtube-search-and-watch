@@ -1,29 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addVideoToHistory } from '../actionCreators';
+import { addVideoToHistory, toggleSearchList } from '../actionCreators';
 
 export default function Player() {
     const dispatch = useDispatch();
 
     let videoData = useSelector(state => state.currentVideo);
     let [player, setPlayer] = useState(null);
+    let isSearchListOpened = useSelector(state => state.isSearchListOpened);
 
     const onVideoReady = (event) => {
         event.target.playVideo();
-    }
+    };
+
+    const onPlayerStateChange = (event) => {
+        if ((event.data === 1 || event.data === 2) && isSearchListOpened) {
+            dispatch(toggleSearchList(false));
+        }
+    };
 
     const loadVideo = () => {
         let player = new window.YT.Player("player-iframe", {
             videoId: videoData.id.videoId,
             events: {
-                'onReady': onVideoReady
-            },
-            playerVars: {
-                'origin':'http://localhost:8080'
+                'onReady': onVideoReady,
+                'onStateChange': onPlayerStateChange
             }
         });
         setPlayer(player);
-    }
+    };
 
     useEffect(() => {
         if (!window.YT) {

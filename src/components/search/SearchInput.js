@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchSearchVideos, toogleSearchList } from './../../actionCreators';
+import { fetchSearchVideos, toggleSearchList } from './../../actionCreators';
 
 export default function SearchInput () {
     let [searchString, setSearchString] = useState('');
@@ -16,24 +16,23 @@ export default function SearchInput () {
 
     const onChange = (event) => {
         setSearchString(event.target.value);
-    }
-
-    const onInputClick = () => {
-        if (searchStringState && !isSearchListOpened) {
-            dispatch(toogleSearchList());
-        }
-    }
+    };
 
     const onSubmit = (event) => {
         event.preventDefault();
+
         const trimString = searchString.trim();
         if (!trimString.length) return;
 
         setSearchString(trimString);
         processFetchVideos(trimString);
 
-        if (!isSearchListOpened) dispatch(toogleSearchList());
-    }
+        if (!isSearchListOpened) dispatch(toggleSearchList(true));
+    };
+
+    const onFocus = (ev) => {
+        if (searchString && searchStringState) dispatch(toggleSearchList(true));
+    };
 
     return (
         <form className="search__form"
@@ -46,7 +45,7 @@ export default function SearchInput () {
                 value={searchString}
                 className="search__input"
                 onChange={onChange}
-                onClick={onInputClick}
+                onFocus={onFocus}
             />
         </form>
     );
